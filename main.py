@@ -4,9 +4,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
-# import os
+import os
 
-# api_key = os.environ.get('API_KEY')
+api_key = os.environ.get('API_KEY')
 
 app = FastAPI()
 
@@ -27,7 +27,7 @@ class GetInTouchRequest(BaseModel):
 
 @app.get("/")
 def read_root():
-    return {"Hello": "Alansaa"}
+    return {"Hello":api_key}
 
 @app.post('/subscribe')
 async def subscribe(subscription_request: SubscriptionRequest):
